@@ -1,38 +1,188 @@
-.App {
-  text-align: center;
+@import url("./assets/styles/font.css");
+
+/* General style */
+
+body {
+  font-family: "Stratos Deliveroo Web", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h2 {
+  font-size: 24px;
+  margin: 60px 0px 20px 0px;
+}
+
+/* Hero */
+
+.hero {
+  margin-top: 50px;
   display: flex;
-  flex-direction: column;
+}
+
+.hero img {
+  height: 200px;
+  width: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 0px 0px 20px 50px;
+}
+
+.hero p {
+  font-family: "IBM Plex Sans";
+  font-size: 19px;
+  line-height: 24px;
+}
+
+/* Content */
+.content {
+  background-color: #f3f5f5;
+  padding-top: 30px;
+}
+
+.sections-container {
+  display: flex;
+  /* margin-top: 30px; */
+}
+
+.left-section {
+  /* border: solid blue 2px; */
+  flex: 2.3;
+}
+
+.meals-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.meal {
+  /* border: solid orange 2px; */
+  width: 48%;
+  height: 150px;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.meal:hover {
+  box-shadow: 10px 5px 5px rgb(230, 230, 230);
+}
+
+.description-container {
+  /* border: solid black 2px; */
+  height: 27px;
+  overflow: scroll;
+  margin: 20px 0px 20px 0px;
+}
+
+.txt-description {
+  /* border: solid red 1px; */
+  font-family: "IBM Plex Sans";
+  font-size: 13px;
+  color: rgb(179, 178, 178);
+  margin: 0px 0px;
+}
+
+.txt-gost {
+  height: 27px;
+  margin: 20px 0px;
+}
+
+.meal img {
+  height: 130px;
+  width: 130px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: 15px;
+}
+
+.price-popular-container {
+  display: flex;
+}
+
+.price-popular-container p {
+  margin-right: 10px;
+}
+
+.right-section {
+  /* border: solid green 1px; */
+  flex: 1;
+  margin: 105px 0px 0px 60px;
+}
+
+.cart {
+  /* border: solid red 1px; */
+  position: fixed;
+  width: 330px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.meal-card {
+  /* border: solid red 1px; */
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 10px 0px;
+  gap: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.meal-cardl-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-more-less {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: solid 3px #20cfbe;
+  font-weight: bold;
+  color: rgb(103, 103, 103);
+  background-color: white;
+}
+
+.counter-meal {
+  color: rgb(138, 137, 137);
+}
+
+.meal-cardl-left span {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "IBM Plex Sans";
+}
+
+.total {
+  text-align: right;
+  color: #20cfbe;
+  text-transform: uppercase;
+  margin: 30px 0px 10px 0px;
+  padding: 0px 0px 5px 0px;
+  border-bottom: solid 1px #20cfbe;
+}
+
+.total-price {
+  text-align: right;
+}
+
+.empty {
+  color: #20cfbe;
+  margin: 10px 0px 0px 0px;
 }
