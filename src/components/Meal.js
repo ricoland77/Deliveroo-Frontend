@@ -13,7 +13,7 @@ const Meal = ({ meal, handleAddToCart }) => {
       }}
     >
       <div>
-        <p>{meal.title}</p>
+        <p className="title-meal">{meal.title}</p>
         {meal.description ? (
           <div className="description-container">
             <p className="txt-description">{meal.description}</p>

@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 // Components
 import Category from "./components/Category";
 
+// Logo
+import deliveroo from "./assets/images/deliveroo-logo.svg";
+
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -27,32 +30,13 @@ function App() {
   }, []);
 
   const handleAddToCart = (meal) => {
-    // Est ce que l'élément sur lequel je clique est déjà dans mon tableau ?
-    // Je prend un par un les éléments de mon tableau et je les comparent à l'élmément sur lequel j'ai cliqué
-    // Boucle sur mon tableau,                           tab[i]   leurs clefs id            meal
-
-    // AVEC UNE BOUCLE FOR
-    // let isPresent = false;
-    // for (let i = 0; i < cart.length; i++) {
-    //   // console.log(cart[i].id, meal.id);
-    //   if (cart[i].id === meal.id) {
-    //     isPresent = true;
-    //     break;
-    //   }
-    // }
-
-    // AVEC FIND
     const newCart = [...cart];
-    // La méthode find return le premier élément du tableau pour lequel la callback return true. mealPresent sera mon objet trouvé. Ou alors undefined si elle trouve rien
     const mealPresent = newCart.find((elem) => elem.id === meal.id);
-
-    console.log(mealPresent);
+    // console.log(mealPresent);
 
     if (mealPresent) {
-      // Si oui, je modifie la clef quantity de mon élément
       mealPresent.quantity++;
     } else {
-      // Si non : je push un nouvel objet dans mon tableau
       newCart.push({ ...meal, quantity: 1 });
     }
     setCart(newCart);
@@ -76,26 +60,26 @@ function App() {
   // Déclaration de mon sous-total
   let total = 0;
 
-  // Je peux faire une boucle for pour remplir ma variable total
-  // for (let i = 0; i < cart.length; i++) {
-  //   // console.log(typeof cart[i].quantity);
-  //   // console.log(typeof cart[i].price);
-  //   total = total + cart[i].quantity * cart[i].price;
-  // }
-
-  console.log(total);
-
   return isLoading ? (
     <p>Loading...</p>
   ) : (
     <div className="App">
-      <div className="container hero">
-        <div>
-          <h1>{data.restaurant.name}</h1>
-          <p>{data.restaurant.description}</p>
+      <header>
+        <div className="container top-header">
+          <img
+            className="logo-deliveroo"
+            src={deliveroo}
+            alt="Logo Deliveroo"
+          />
         </div>
-        <img src={data.restaurant.picture} alt="Meal" />
-      </div>
+        <div className="container header">
+          <img src={data.restaurant.picture} alt="Meal" />
+          <div>
+            <h1>{data.restaurant.name}</h1>
+            <p>{data.restaurant.description}</p>
+          </div>
+        </div>
+      </header>
 
       <div className="content">
         <div className="container sections-container">
@@ -121,29 +105,31 @@ function App() {
                   // J'utilise le fait que mon map parcour déjà mon panier, j'en profite pour remplir mon total
                   total += meal.price * meal.quantity;
                   return (
-                    <div className="meal-card" key={meal.id}>
-                      <div className="meal-cardl-left">
-                        <button
-                          className="btn-more-less"
-                          onClick={() => {
-                            handleRemoveFromCart(meal);
-                          }}
-                        >
-                          -
-                        </button>
-                        <span className="counter-meal">{meal.quantity}</span>
-                        <button
-                          className="btn-more-less"
-                          onClick={() => {
-                            handleAddToCart(meal);
-                          }}
-                        >
-                          +
-                        </button>
-                        <span>{meal.title}</span>
-                      </div>
+                    <div>
+                      <div className="meal-card" key={meal.id}>
+                        <div className="meal-card-left">
+                          <button
+                            className="btn-more-less"
+                            onClick={() => {
+                              handleRemoveFromCart(meal);
+                            }}
+                          >
+                            -
+                          </button>
+                          <span className="counter-meal">{meal.quantity}</span>
+                          <button
+                            className="btn-more-less"
+                            onClick={() => {
+                              handleAddToCart(meal);
+                            }}
+                          >
+                            +
+                          </button>
+                          <span className="title-meal-cart">{meal.title}</span>
+                        </div>
 
-                      <span>{(meal.price * meal.quantity).toFixed(2)} €</span>
+                        <span>{(meal.price * meal.quantity).toFixed(2)} €</span>
+                      </div>
                     </div>
                   );
                 })}
@@ -151,7 +137,10 @@ function App() {
                 <p className="total-price">{total.toFixed(2)} €</p>
               </div>
             ) : (
-              <div className="empty">Panier vide</div>
+              <div className="cart-one">
+                <p className="title-cart-one">Panier</p>
+                <p className="empty-cart">Votre panier est vide</p>
+              </div>
             )}
           </section>
         </div>
